@@ -1,0 +1,554 @@
+<!doctype html>
+
+<?php
+require 'llamados.php'
+?>
+
+<html>
+
+<head>
+    <title>Limpieza Publica
+    </title>
+
+    <script src="/DGLP/transferencia/query.js"></script>
+    <link rel="stylesheet" href="/DGLP/css/bootstrap.css">
+    <script src="/DGLP/menu/estilo.js" crossorigin="anonymous"></script>
+    <script src="googleapisjs.js"></script>
+    <script src="ajaxjs.js"></script>
+    <link rel="stylesheet" href="bootstrapcss.css" />
+    <script src="bootstrapjs.js"></script>
+    <script src="cloudflarejs.js"></script>
+    <link rel="stylesheet" href="cloudflare.css" />
+    <script src="/DGLP/limpieza/validar_campos.js"></script>
+
+
+    <style>
+        * {
+            margin: 1px;
+
+            border: 0;
+        }
+
+        body {
+            font-family: Arial;
+            font-size: 15px;
+            background-image: url("Diseño/veri.png");
+
+            min-height: 350px;
+
+            /* Center and scale the image nicely */
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            position: relative;
+
+        }
+
+        form {
+
+            background-color: #E4F5F7;
+            box-sizing: border-box;
+            border: 2px solid red;
+            border-radius: 8px;
+
+        }
+
+        .solid {
+            border-top: 2px solid red;
+        }
+
+        .solid2 {
+            border-bottom: 2px solid red;
+            width: 50%;
+        }
+    </style>
+
+</head>
+
+
+<body>
+
+    <div class="main">
+        <table table-layout=fixed; width="100%" style="margin:auto;" cellspacing="0" cellpadding="0" border="0">
+            <?php
+            require '../menu/menunav.php';
+            ?>
+        </table>
+    </div>
+
+    <?php
+    date_default_timezone_set('America/Managua');
+    $registro = date("Y-m-d H:i:s");
+    $fecha = date("Y-m-d");
+    ?>
+
+
+    <div class="main col-md-10">
+
+        <Form action="insertar_lp.php" onsubmit="return validarFormulario();" method="POST" enctype="multipart/form-data">
+            <div class="col-md-12">
+                <h4 id='titulo'><b>Datos del Generales</b></h4><br>
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="">Fecha</label>
+                        <br>
+                        <input type="date" class="form-control" id="fecha" name="fecha" value="<?= $fecha ?>" />
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label for="">Turno</label>
+                        <br>
+                        <Select class="form-control" id="turno" name="turno">
+                            <option value="">TURNO:</option>
+                            <?php
+                            while ($datos = mysqli_fetch_array($query3)) {
+                            ?>
+                                <option value="<?php echo $datos['turno'] ?>"> <?php echo $datos['turno'] ?></option>
+                            <?php
+                            }
+                            ?>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label for="Cargo">Distrito:</label>
+                        <br>
+                        <select id="distrito" class="form-control distrito" name="distrito">
+                            <option value="">Distrito:</option>
+                            <?php
+                            while ($datos = mysqli_fetch_array($query)) {
+                            ?>
+                                <option value="<?php echo $datos['distrito'] ?>"> <?php echo $datos['distrito'] ?></option>
+                            <?php
+                            }
+                            ?>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label for="zona">Zona:</label>
+                        <br>
+                        <select class="form-control" id="zona" name="zona">
+                            <option value="">Zona:</option>
+                            <?php
+                            while ($datos = mysqli_fetch_array($query4)) {
+                            ?>
+                                <option value="<?php echo $datos['zona'] ?>"> <?php echo $datos['zona'] ?></option>
+                            <?php
+                            }
+                            ?>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label for="">Ruta</label>
+                        <br>
+                        <select id="ruta" name="ruta" class="form-control" onchange="mostrarKM()">
+                            <option value="">Selecciona Ruta:</option>
+                            <?php
+                            while ($row = mysqli_fetch_assoc($query2)) {
+                                echo "<option value=\"{$row['ruta']}\">{$row['ruta']}</option>";
+                            }
+                            ?>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="">Equipo</label>
+                        <br>
+                        <select id="equipos" name="equipos" class="form-control" onchange="mostrarDescripcion()">
+                            <option value="">Selecciona un equipo:</option>
+                            <?php
+                            while ($row = mysqli_fetch_assoc($query5)) {
+                                echo "<option value=\"{$row['equipo']}\">{$row['equipo']}</option>";
+                            }
+                            ?>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="descripcion">Tipo:</label>
+                        <br>
+                        <input type="text" class="form-control" id="descripcion" name="descripcion" readonly>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-12 solid">
+                <h4 id='titulo'><b>Datos del conductor</b></h4><br>
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="">INSS</label>
+                        <br>
+                        <select id="frame1" name="inss" class="frame" onchange="mostrarDetalles('frame1', 'nombre')">
+                            <option value="">Seleccione:</option>
+                            <?php
+                            while ($row = mysqli_fetch_assoc($query6)) {
+                                echo "<option value=\"{$row['inss']}\">{$row['inss']}</option>";
+                            }
+                            ?>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-md-5">
+                    <div class="form-group">
+                        <label for="nombre">Nombre y Apellido:</label>
+                        <br>
+                        <input type="text" class="form-control" id="nombre" name="conductor" readonly>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-12 solid">
+                <h4 id='titulo'><b>Datos de Operarios</b></h4><br>
+            </div>
+
+            <div class="col-md-12">
+                <h4 id='titulo' class="solid2">Operario 1</h4><br>
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="">INSS</label>
+                        <br>
+                        <select id="frame2" name="inss1" class="frame" onchange="mostrarDetalles('frame2', 'nombre2')">
+                            <option value="">Seleccione:</option>
+                            <?php
+                            while ($row = mysqli_fetch_assoc($query8)) {
+                                echo "<option value=\"{$row['inss']}\">{$row['inss']}</option>";
+                            }
+                            ?>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-md-5">
+                    <div class="form-group">
+                        <label for="nombre">Nombre y Apellido:</label>
+                        <br>
+                        <input type="text" class="form-control" id="nombre2" name="operario1" readonly>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-12">
+                <h4 id='titulo' class="solid2">Operario 2</h4><br>
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="">INSS</label>
+                        <br>
+                        <select id="frame3" name="inss2" class="frame" onchange="mostrarDetalles('frame3', 'nombre3')">
+                            <option value="">Seleccione:</option>
+                            <?php
+                            while ($row = mysqli_fetch_assoc($query9)) {
+                                echo "<option value=\"{$row['inss']}\">{$row['inss']}</option>";
+                            }
+                            ?>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-md-5">
+                    <div class="form-group">
+                        <label for="nombre">Nombre y Apellido:</label>
+                        <br>
+                        <input type="text" class="form-control" id="nombre3" name="operario2" readonly>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-12">
+                <h4 id='titulo' class="solid2">Operario 3</h4><br>
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="">INSS</label>
+                        <br>
+                        <select id="frame4" name="inss3" class="frame" onchange="mostrarDetalles('frame4', 'nombre4')">
+                            <option value="">Seleccione:</option>
+                            <?php
+                            while ($row = mysqli_fetch_assoc($query10)) {
+                                echo "<option value=\"{$row['inss']}\">{$row['inss']}</option>";
+                            }
+                            ?>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-md-5">
+                    <div class="form-group">
+                        <label for="nombre">Nombre y Apellido:</label>
+                        <br>
+                        <input type="text" class="form-control" id="nombre4" name="operario3" readonly>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-12 solid">
+                <h4 id='titulo'><b>Viajes Realizados</b></h4><br>
+            </div>
+            <div class="row">
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label for="viaje1"> Viaje1 Peso-kg</label>
+                        <br>
+                        <input type="number" class="form-control" step="0.001" id="viaje1" oninput="contarViajes()" name="viaje1">
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label for="viaje2"> Viaje2 Peso-kg</label>
+                        <br>
+                        <input type="number" class="form-control" step="0.001" id="viaje2" oninput="contarViajes()" name="viaje2">
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label for="viaje3"> Viaje3 Peso-kg</label>
+                        <br>
+                        <input type="number" class="form-control" step="0.001" id="viaje3" oninput="contarViajes()" name="viaje3">
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label for="viaje Apoyo"> Viaje Apoyo</label>
+                        <br>
+                        <input type="number" class="form-control" step="0.001" id="viaje4" oninput="contarViajes()" name="viaje_apoyo">
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label for="vaje3">Cantidad de Viajes</label>
+                        <br>
+                        <input type="number" class="form-control" id="cantidad_viajes" name="cantidad_viajes" readonly>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-12 solid">
+                <h4 id='titulo'><b>Tiempo Activo y KM Recorridos</b></h4><br>
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="salida">Hora de salida</label>
+                        <input type="time" name="salida" id="horaSalida" class="form-control">
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="salida">Hora de Entrada</label>
+                        <input type="time" name="entrada" id="horaEntrada" class="form-control">
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="salida">Horas Trabajadas</label>
+                        <input type="time" name="horas_trabajadas" id="totalHorasTrabajadas" class="form-control" readonly>
+                    </div>
+                </div>
+
+
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label for="salida">KM Recorridos</label>
+                        <input type="text" class="form-control" id="kmV1" name="km_recorridos" readonly>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-12 solid">
+                <h4 id='titulo'>Total del peso de los viajes</h4><br>
+            </div>
+            <div class="row">
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label for="vaje3">Suma Peso-Kg</label>
+                        <br>
+                        <input type="number" class="form-control" name="total_kg" readonly>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label for="vaje3">Toneladas</label>
+                        <br>
+                        <input type="number" class="form-control" name="toneladas" readonly>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label for="atencion">% de Atencion</label>
+                        <br>
+                        <input type="number" id="atencion" class="form-control" name="atencion">
+                    </div>
+                </div>
+
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label for="Estado">Estado:</label>
+                        <br>
+                        <select class="form-control" id="estado" name="estado">
+                            <option value="">Estado:</option>
+                            <?php
+                            while ($datos = mysqli_fetch_array($query11)) {
+                            ?>
+                                <option value="<?php echo $datos['estado'] ?>"> <?php echo $datos['estado'] ?></option>
+                            <?php
+                            }
+                            ?>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-md-12 solid">
+                <h4 id='titulo'><b>Detalles y Observacion</b></h4><br>
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="salida">Destino</label>
+                        <input type="text" name="destino" class="form-control" value="EMTRIDES" readonly>
+                    </div>
+                </div>
+                <div class="col-md-5">
+                    <div class="form-group">
+                        <label for="salida">Observacion</label>
+                        <textarea name="observacion" class="form-control" style="text-transform: uppercase;"></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-12 solid">
+                <h4 id='titulo'><b>Autorizado y Revisado</b></h4><br>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <h4 id='titulo' class="solid2">Fiscal</h4><br>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="">INSS</label>
+                        <br>
+                        <select id="frame5" name="inss4" class="frame" onchange="mostrarDetalles2('frame5', 'nombre5')">
+                            <option value="">Seleccione:</option>
+                            <?php
+                            while ($row = mysqli_fetch_assoc($query12)) {
+                                echo "<option value=\"{$row['inss']}\">{$row['inss']}</option>";
+                            }
+                            ?>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-md-5">
+                    <div class="form-group">
+                        <label for="nombre">Nombre y Apellido:</label>
+                        <br>
+                        <input type="text" class="form-control" id="nombre5" name="fiscal" readonly>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <h4 id='titulo' class="solid2">Jefe de Seccion</h4><br>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="">INSS</label>
+                        <br>
+                        <select id="frame6" name="inss5" class="frame" onchange="mostrarDetalles3('frame6', 'nombre6')">
+                            <option value="">Seleccione:</option>
+                            <?php
+                            while ($row = mysqli_fetch_assoc($query13)) {
+                                echo "<option value=\"{$row['inss']}\">{$row['inss']}</option>";
+                            }
+                            ?>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-md-5">
+                    <div class="form-group">
+                        <label for="nombre">Nombre y Apellido:</label>
+                        <br>
+                        <input type="text" class="form-control" id="nombre6" name="jefe_seccion" readonly>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-info" style="width:200px; height:40px;">Registrar</button>
+                        <input type="hidden" name="usuario" value="<?= $usuario ?>">
+                        <input type="hidden" name="registro" value="<?= $registro ?>">
+                    </div>
+                </div>
+            </div>
+        </Form>
+    </div>
+
+    <!--<script>
+
+function validarFormulario() {
+  var fecha = document.getElementById('fecha').value;
+  var turno = document.getElementById('turno').value;
+  var distrito = document.getElementById('distrito').value;
+  var ruta = document.getElementById('zona').value;
+  var equipos = document.getElementById('equipos').value;
+  var inss = document.getElementById('frame1').value;
+  var inss1 = document.getElementById('frame2').value;
+  var inss2 = document.getElementById('frame3').value;
+  var inss3 = document.getElementById('frame4').value;
+  var viaje1 = document.getElementById('viaje1').value;
+  var viaje2 = document.getElementById('viaje2').value; 
+  var viaje3 = document.getElementById('viaje3').value;
+  var viaje_apoyo = document.getElementById('viaje4').value;
+  var salida = document.getElementById('horaSalida').value;
+  var entrada = document.getElementById('horaEntrada').value;
+  var atencion = document.getElementById('atencion').value;
+  var estado = document.getElementById('estado').value;
+  var inss4 = document.getElementById('frame5').value;
+  var inss5 = document.getElementById('frame6').value;
+
+  if (fecha === '' || turno === '' || distrito === '' || ruta === ''|| equipos === '' || inss === '' || inss1 === '' || inss2 === '' || inss3 ===''||viaje1 === '' || viaje2 === ''||
+  viaje3 === '' || viaje_apoyo === '' || salida === '' || entrada === '' || atencion === '' || estado === '' || inss4 === '' || inss5 === '') {
+    alert('Por favor, completa todos los campos del formulario.');
+    return false; // Evita que el formulario se envíe
+  }
+
+  // Si llegamos aquí, todos los campos están completos
+  return true; // Envía el formulario
+}
+
+</script>-->
+
+    <script src="/DGLP/limpieza/validar_campos.js"></script>
+
+    <script src="/DGLP/limpieza/funciones_limpieza.js"></script>
+
+</body>
+
+</html>

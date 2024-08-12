@@ -1,0 +1,66 @@
+<!DOCTYPE html><html><head></head><body>
+    
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script type="text/javascript" src="https://html2canvas.hertzen.com/dist/html2canvas.js"></script>
+
+<div id="dvTable" style = "width:340px;background-color:White;padding:5px">
+    <u>Customer Records</u>
+    <br />
+    <br />
+    <table cellspacing="0" rules="all" border="1" style="border-collapse: collapse;">
+        <tr>
+            <th scope="col" style="width: 90px;">
+                Customer Id
+            </th>
+            <th scope="col" style="width: 120px;">
+                Name
+            </th>
+            <th scope="col" style="width: 120px;">
+                Country
+            </th>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>John Hammond</td>
+            <td>United States</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>Mudassar Khan</td>
+            <td>India</td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>Suzanne Mathews</td>
+            <td>France</td>
+        </tr>
+        <tr>
+            <td>4</td>
+            <td>Robert Schidner</td>
+            <td>Russia</td>
+        </tr>
+    </table>
+</div>
+<br />
+<button id="save_image_locally">download img</button>
+
+   <div id="imagesave">
+      <img id='local_image' src='img1.jpg'>
+   </div>
+<script>
+
+    $('#save_image_locally').click(function(){
+
+            html2canvas($('#imagesave'), 
+             {
+                onrendered: function (canvas) {
+                    var img = canvas.toDataURL("image/png");
+                    alert('This will currently open image in a new window called "data:". Instead I want to save to users local computer. Ideally as a jpg instead of png.');
+                    window.open(img);
+                }
+             });
+            });
+
+</script>
+
+</body></html>

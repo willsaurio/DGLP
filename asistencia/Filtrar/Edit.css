@@ -1,0 +1,13 @@
+body {
+	bacground: #ddd;
+	font-family: monospace;
+}
+
+.container-table{
+	width:90%;
+	background: white;
+	margin: 50px auto;
+	
+	display: grid;
+ 	grid-template-columns: repeat(4, 100px);
+}

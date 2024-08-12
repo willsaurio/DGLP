@@ -1,0 +1,69 @@
+*{
+	margin: 0;
+	padding: 0;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+
+Body{
+	
+	margin:0;
+	font-family: sans-serif;
+	background: #087CA7;
+}
+
+header{
+width: 100%;
+background: #EE3008;
+}
+
+
+
+
+
+.navegacion ul {
+	list-style: none;
+}
+
+.menu > li {
+	/*position: relative,*/
+	display: inline-block;
+}
+
+.menu > li > a{
+	display: block;
+	padding: 15px 20px;
+	color: #fff;
+	text-decoration: none;
+}
+
+.menu li {
+	border-right: 2px solid #fff;
+	flex-grow: 1;
+}
+
+.menu li a:hover{
+	color: #CE7D35;
+	transition: all .3s;
+	}
+
+.submenu {
+	position: absolute;
+	background: #333333;
+    display: none;
+}
+
+.submenu li a{
+	display: block;
+	padding: 15px;
+	color: #fff; 
+	text-decoration: none;
+}
+
+.menu li:hover .submenu {
+	display: block;
+}
+/*Datos para Icono */
+
