@@ -32,7 +32,7 @@ require 'llamados.php'
 body {
   font-family: Arial;
   font-size: 15px;
-  background-image: url("Dise√±o/veri.png");
+  background-image: url("DiseÒo/veri.png");
 
 min-height: 350px;
 
@@ -46,10 +46,10 @@ position: relative;
 
 form {
  
-background-color: #E4F5F7;
+/*background-color: #E4F5F7;
 box-sizing: border-box;
 border: 2px solid red;
-border-radius: 8px;
+border-radius: 8px;*/
 
 }
 
@@ -87,10 +87,11 @@ $fecha = date("Y-m-d");
 <div class="main col-md-10">
 
 <Form action= "insertar_lp.php"  onsubmit="return validarFormulario();" method="POST" enctype="multipart/form-data">
+<div class="container">
 <div class="col-md-12">
-<h4 id='titulo'><b>Datos Generales</b></h4><br>
+<h4 id='titulo'><b>Datos del Generales</b></h4><br>
 </div>
-<div class="row">
+
 <div class="col-md-3">
 <div class="form-group">
 <label for="">Fecha</label>
@@ -168,7 +169,7 @@ while ($datos= mysqli_fetch_array($query4))
 </div>
 </div>
 
-<div class="row">
+<div class="container">
 <div class="col-md-3">
 <div class="form-group">
 <label for="">Equipo</label>
@@ -193,10 +194,11 @@ while ($datos= mysqli_fetch_array($query4))
 </div>
 </div>
 
+<div class="container">
 <div class="col-md-12 solid">
 <h4 id='titulo'><b>Datos del conductor</b></h4><br>
 </div>
-<div class="row">
+
 <div class="col-md-3">
 <div class="form-group">
 <label for="">INSS</label>
@@ -221,6 +223,8 @@ while ($datos= mysqli_fetch_array($query4))
 </div>
 </div>
 
+<div class="container">
+
 <div class="col-md-12 solid">
 <h4 id='titulo'><b>Datos de Operarios</b></h4><br>
 </div>
@@ -228,7 +232,6 @@ while ($datos= mysqli_fetch_array($query4))
 <div class="col-md-12">
 <h4 id='titulo' class="solid2">Operario 1</h4><br>
 </div>
-<div class="row">
 <div class="col-md-3">
 <div class="form-group">
 <label for="">INSS</label>
@@ -253,10 +256,11 @@ while ($datos= mysqli_fetch_array($query4))
 </div>
 </div>
 
+<div class="container">
 <div class="col-md-12">
 <h4 id='titulo' class="solid2">Operario 2</h4><br>
 </div>
-<div class="row">
+
 <div class="col-md-3">
 <div class="form-group">
 <label for="">INSS</label>
@@ -281,10 +285,11 @@ while ($datos= mysqli_fetch_array($query4))
 </div>
 </div>
 
+<div class="con">
 <div class="col-md-12">
 <h4 id='titulo' class="solid2">Operario 3</h4><br>
 </div>
-<div class="row">
+
 <div class="col-md-3">
 <div class="form-group">
 <label for="">INSS</label>
@@ -541,11 +546,11 @@ function validarFormulario() {
   if (fecha === '' || turno === '' || distrito === '' || ruta === ''|| equipos === '' || inss === '' || inss1 === '' || inss2 === '' || inss3 ===''||viaje1 === '' || viaje2 === ''||
   viaje3 === '' || viaje_apoyo === '' || salida === '' || entrada === '' || atencion === '' || estado === '' || inss4 === '' || inss5 === '') {
     alert('Por favor, completa todos los campos del formulario.');
-    return false; // Evita que el formulario se env√≠e
+    return false; // Evita que el formulario se envÌe
   }
 
-  // Si llegamos aqu√≠, todos los campos est√°n completos
-  return true; // Env√≠a el formulario
+  // Si llegamos aquÌ, todos los campos est·n completos
+  return true; // EnvÌa el formulario
 }
 
 </script>-->

@@ -55,7 +55,7 @@ if ($resultado) {
 	echo "<script>alert('Registro de $ruta Realizado!');
 	window.location='limpieza.php'</script>";
 } else {
-  echo "<script>alert('Hubo un Error!!!'); window.location='limpieza.php'</script>";
+  echo "<script>alert('Hubo un Error!!!'); window.location='limpieza2.php'</script>";
 }
 mysqli_close($conexion);
 

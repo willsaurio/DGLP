@@ -37,7 +37,7 @@
   //fin viajes
   
  //muestra los datos del equipo
-  function mostrarDescripcion() {
+  /*function mostrarDescripcion() {
       var equipoSeleccionado = document.getElementById("equipos").value;
   
       // Realizar una petición AJAX para obtener la descripción del equipo
@@ -50,11 +50,11 @@
   
       xhr.open("GET", "descripcion.php?equipo=" + equipoSeleccionado, true);
       xhr.send();
-  }
+  }*/
  //fin equipos datos
   
  //muestra los datos del empleado
- function mostrarDetalles(inputId, nombreId) {
+ /*function mostrarDetalles(inputId, nombreId) {
     var empleadoSeleccionado = document.getElementById(inputId).value;
 
     // Realizar una petición AJAX para obtener detalles del empleado
@@ -69,12 +69,12 @@
 
     xhr.open("GET", "info_trabajador.php?inss=" + empleadoSeleccionado, true);
     xhr.send();
-}
+}*/
  //fin datos empleados
   
   // muestra info del empleado a traves del inss
  
-  $(document).ready(function(){
+  /*$(document).ready(function(){
    $('.frame').multiselect({
     nonSelectedText: 'inss',
     enableFiltering: true,
@@ -102,7 +102,7 @@
      }
     });
    });
-  });
+  });*/
 
 
   //FIN INSS
@@ -127,7 +127,7 @@
 //fin fiscal
 
 //llamado Jefe de Seccion
-function mostrarDetalles3(inputId, nombreId) {
+/*function mostrarDetalles3(inputId, nombreId) {
     var empleadoSeleccionado = document.getElementById(inputId).value;
 
     // Realizar una petición AJAX para obtener detalles del empleado
@@ -238,11 +238,11 @@ function mostrarDetalles3(inputId, nombreId) {
    });
    
    
-  });
+  });*/
 
      // Función para calcular el total de horas trabajadas
-     function calcularTotalHoras() {
-        // Obtener las fechas de entrada y salida
+     //function calcularTotalHoras() {
+        /* Obtener las fechas de entrada y salida
         var horaEntrada = document.getElementById('horaEntrada').value;
         var horaSalida = document.getElementById('horaSalida').value;
     
@@ -263,16 +263,13 @@ function mostrarDetalles3(inputId, nombreId) {
     
         // Mostrar el total de horas trabajadas en el campo correspondiente
         document.getElementById('totalHorasTrabajadas').value = horasFormateadas + ':' + minutosFormateados;
-    }
-    
-    // Agregar eventos de cambio para los campos de entrada de fecha
-    document.getElementById('horaEntrada').addEventListener('change', calcularTotalHoras);
-    document.getElementById('horaSalida').addEventListener('change', calcularTotalHoras);
+    }*/
+
 
 
    // Calculo de kilometraje
   // Evento de cambio en el select de ruta
-document.getElementById('ruta').addEventListener('change', function () {
+/*document.getElementById('ruta').addEventListener('change', function () {
     // Llamar a contarViajes antes de mostrar los kilómetros
 
     
@@ -284,13 +281,13 @@ document.getElementById('ruta').addEventListener('change', function () {
         // Llamar a mostrarKM con el valor actualizado de totalViajes
         mostrarKM(result);
     });
-});
+});*/
 
 
 
 
 // Calculo de kilometraje
-function mostrarKM(totalViajes2) {
+/*function mostrarKM(totalViajes2) {
   
     // Obtener la ruta seleccionada
     var rutaSeleccionada = document.getElementById("ruta").value;
@@ -330,7 +327,104 @@ function mostrarKM(totalViajes2) {
 
     }
 
+}*/
+
+function mostrarKM(totalViajes) {
+    var rutaId = $('#ruta').val(); // Obtén el valor seleccionado en el select
+
+    if (!rutaId) {
+        $('#kmV1').val(''); // Limpia el campo si no se ha seleccionado una ruta
+        return;
+    }
+
+    $.ajax({
+        url: 'obtener_km_recorridos.php', // Cambia esto por la ruta correcta
+        type: 'POST',
+        data: { idruta: rutaId },
+        dataType: 'json',
+        success: function(response) {
+            // Suponiendo que response contiene kmV1 y kmV2
+            console.log(response);
+            var kmV1 = response.kmV1;
+            var kmV2 = response.kmV2;
+
+            // Lógica para determinar qué valor mostrar
+            var valorMostrar = totalViajes > 1 ? kmV2 : kmV1;
+
+            // Actualiza el valor del input
+            $('#kmV1').val(valorMostrar);
+        },
+        error: function() {
+            $('#kmV1').val('Error al obtener datos'); // Mensaje de error en caso de fallo en la solicitud
+        }
+    });
 }
+
+
+/*
+    <script>
+        // Calculo de kilometraje
+function mostrarKM(totalViajes2) {
+  
+    // Obtener la ruta seleccionada
+    var rutaSeleccionada = document.getElementById("ruta").value;
+    var totalViajes2 = document.getElementById("cantidad_viajes").value;
+
+
+    console.log(totalViajes2);
+    console.log(rutaSeleccionada);
+
+    if (totalViajes2>0 && (rutaSeleccionada!=null || rutaSeleccionada!=undefined) ){
+
+        
+        
+            // Realizar una petición AJAX para obtener los kilómetros recorridos
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4) {
+                    if (xhr.status == 200) {
+                        var response = JSON.parse(xhr.responseText);
+                    console.log(response);
+                        // Determinar si mostrar kmV1 o kmV2 según el valor de totalViajes
+                        var kmRequerido = (totalViajes2 == 1) ? response.kmV1 : response.kmV2;
+        
+                        // Mostrar el valor correspondiente en el campo "kmV1"
+                        document.getElementById("kmV1").value = kmRequerido;
+                    } else {
+                        console.error("Error en la solicitud AJAX");
+                    }
+                }
+            };
+        
+            xhr.open("GET", "obtener_km_recorridos.php?ruta=" + rutaSeleccionada + "&cantidad_viajes=" + totalViajes2, true);
+            xhr.send();
+
+
+
+
+    }
+}
+
+    </script>
+
+    <script>
+        document.getElementById('ruta').addEventListener('change', function () {
+    // Llamar a contarViajes antes de mostrar los kilómetros
+
+    
+
+   // let totalViajes=contarViajes();
+   console.log( contarViajes());
+    contarViajes().then(function (result) {
+        alert(result);
+        // Llamar a mostrarKM con el valor actualizado de totalViajes
+        mostrarKM(result);
+    });
+});
+
+    </script>
+*/
+
   
     
     

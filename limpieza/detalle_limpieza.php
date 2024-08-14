@@ -87,7 +87,7 @@ require '../menu/menunav.php';
         </form>
 </div>
 
-<div class="panel-heading inline"  style="width 60%; float:right;">
+<div class="panel-heading inline"  style="width 40%; float:right;">
 <label style="font-size:17px; font-weight:bold;">Descargar Planilla</label>
 <form method="post" class="form-inline" action="/DGLP/reportes/limpieza_reporte.php">
 	<label for="">De:</label>

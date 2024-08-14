@@ -1,0 +1,120 @@
+
+body {
+  /*font-family: Arial;*/
+  font-size: 15px;
+  background-image: url("Diseño/veri.png");
+
+min-height: 350px;
+
+/* Center and scale the image nicely */
+background-position: center;
+background-repeat: no-repeat;
+
+
+}
+
+
+input.invalid {
+  background-color: #ffdddd;
+}
+
+/* Hide all steps by default: */
+.tab {
+  display: none;
+}
+
+button {
+  background-color: #04AA6D;
+  color: #ffffff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 17px;
+  /*font-family: Raleway;*/
+  cursor: pointer;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+#prevBtn {
+  background-color: #bbbbbb;
+}
+
+/* Make circles that indicate the steps of the form: */
+.step {
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: #bbbbbb;
+  border: none;  
+  border-radius: 50%;
+  display: inline-block;
+  opacity: 0.5;
+}
+
+.step.active {
+  opacity: 1;
+}
+
+/* Mark the steps that are finished and valid: */
+.step.finish {
+  background-color: #04AA6D;
+}
+
+#regForm {
+  background-color: #ffffff;
+  /*font-family: Raleway;*/
+  width: 70%;
+  margin: 10%;
+ /* min-width: 300px; */
+}
+
+h1 {
+  text-align: center;  
+}
+
+
+
+.form-style h2 {
+  margin-bottom: 20px;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.form-style label {
+  display: block;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.form-style input[type="text"],
+.form-style input[type="email"],
+.form-style input[type="password"],
+.form-style select,
+.form-style textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.form-style button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.form-style button:hover {
+  background-color: #45a049;
+}
+
+
+
+
+

@@ -126,12 +126,12 @@ button[name=edit]:hover {
     <div class="form-row">
     <div class="form-group col-md-6">
         <label for="empleado">Salida:</label>
-        <input class="form-control" type="time" id="salida" name="salida">
+        <input class="form-control" type="time" id="salida" name="salida" step="1">
     </div>
   
     <div class="form-group col-md-6">
         <label for="empleado">Regreso:</label>
-        <input class="form-control" type="time" id="regreso" name="regreso">
+        <input class="form-control" type="time" id="regreso" name="regreso" step="1">
     </div>
     </div>
 

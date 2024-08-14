@@ -10,8 +10,8 @@
 
 <style>
 body {
-  font-family: "Monserrat", sans-serif;
-   height: 100vh;
+  font-family: "Lato", sans-serif;
+   height: 90vh;
   min-width: 100%;
   background-position: center;
 	background-repeat: no-repeat;
@@ -164,7 +164,7 @@ if ($rol == 2) {
     <i class="fa fa-caret-down"></i>
       </button>';
      echo '<div class="dropdown-container">';
-     echo '<a href="/DGLP/limpieza/limpieza.php">Roles de Ruta</a>';
+     echo '<a href="/DGLP/limpieza/limpieza2.php">Roles de Ruta</a>';
      echo '<a href="/DGLP/limpieza/detalle_limpieza.php">Registro Diario</a>';
     echo '</div>';
 
@@ -192,7 +192,7 @@ if ($rol == 2) {
   <i class="fa fa-caret-down"></i>
     </button>';
    echo '<div class="dropdown-container">';
-   echo '<a href="/DGLP/limpieza/limpieza.php">Roles de Ruta</a>';
+   echo '<a href="/DGLP/limpieza/limpieza2.php">Roles de Ruta</a>';
    echo '<a href="/DGLP/limpieza/detalle_limpieza.php">Registro Diario</a>';
   echo '</div>';
 
@@ -200,7 +200,7 @@ if ($rol == 2) {
   <i class="fa fa-caret-down"></i>
     </button>';
    echo '<div class="dropdown-container">';
-   echo '<a href="/DGLP/transferencia/transferencia.php">Roles de Equipo</a>';
+   echo '<a href="/DGLP/transferencia/transferencia2.php">Roles de Equipo</a>';
    echo '<a href="/DGLP/transferencia/detalle_transferencia.php">Registro Diario</a>';
   echo '</div>';
 
