@@ -4,7 +4,7 @@
 <?php
 $mysqli=mysqli_connect("localhost", "root", "12345678", "los_cocos");
 
-$query2=mysqli_query($mysqli, "SELECT `id`, `inss` FROM `nomina`");
+$query2=mysqli_query($mysqli, "SELECT `idEmp`, `inss` FROM `nomina`");
 
 ?>
 
