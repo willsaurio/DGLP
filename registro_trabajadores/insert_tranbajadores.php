@@ -7,7 +7,7 @@ $inss = $_POST["inss"];
 $Nombres_Apellidos = $_POST["nombre_apellido"];
 $cargo = $_POST["cargo"];
 $ubicacion = $_POST["ubicacion"];
-$jornada = $_POST["jornada_laboral"];
+$jornada_laboral = $_POST["jornada_laboral"];
 $fecha_ingreso = $_POST["fecha_ingreso"];
 $cedula = $_POST["cedula"];
 $registro = $_POST["registro"];
@@ -24,7 +24,12 @@ if($filas>0){
 }else{
 
 $datos= "INSERT INTO `nomina`(`idEmp`,`nomina`,`inss`,`nombre_apellido`,`cargo`,`ubicacion`,`jornada_laboral`,`fecha_ingreso`,`cedula`,`registro`,`estado`) VALUES
-(NULL,'$ID',`$nomina`,`$inss`,`$nombre_apellido`,`$cargo`,`$ubicacion`,``````````````````)
+(NULL,'$ID',`$nomina`,`$inss`,`$nombre_apellido`,`$cargo`,`$ubicacion`,`$jornada_laboral`,`$fecha_ingreso`,`$cedula`,`$registro`,`$estado`)";
+
+$resultado= mysqli_query($conexion,$datos);
+
+    echo "<script>alert('Usuario $nombre_apellido Registrado');
+    window.location='registro_trabajadores.php'</script>";
 
 }
 mysqli_close($conexion);

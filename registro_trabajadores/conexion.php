@@ -1,6 +1,6 @@
 <?php
 
-$conexion = mysqli_connect("localhost","root","12345678","los_cocos");
+$conexion = mysqli_connect("localhost","root","123456789","los_cocos");
 
 mysqli_set_charset($conexion,"utf8");
 

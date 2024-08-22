@@ -1,7 +1,7 @@
 <?php
 
 // Establecer conexión a la base de datos
-$conexion = new mysqli("localhost", "root", "12345678", "los_cocos");
+$conexion = new mysqli("localhost", "root", "123456789", "los_cocos");
 
 // Verificar la conexión
 if ($conexion->connect_error) {
