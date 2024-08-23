@@ -87,8 +87,8 @@ require '../menu/menunav.php';
         </form>
 </div>
 
-<div class="panel-heading inline"  style="width 40%; float:right;">
-<label style="font-size:17px; font-weight:bold;">Descargar Planilla</label>
+<div class="panel-heading inline"  style="width 50%; float:right;">
+<label style="font-size:17px; font-weight:bold;">Descargar Resumen</label>
 <form method="post" class="form-inline" action="/DGLP/reportes/limpieza_reporte.php">
 	<label for="">De:</label>
 	<input type="date" class="form-control" name="date1">

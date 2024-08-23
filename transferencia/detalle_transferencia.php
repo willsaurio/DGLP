@@ -90,8 +90,8 @@ require '../menu/menunav.php';
 
 
 
-<div class="panel-heading inline hidden"  style="width 40%; float:right;">
-<label style="font-size:17px; font-weight:bold;">Descargar Planilla</label>
+<div class="panel-heading inline hidden"  style="width 50%; float:right;">
+<label style="font-size:17px; font-weight:bold;">nDescargar Resumen</label>
 <form method="post" class="form-inline" action="/DGLP/reportes/planilla.php">
 		 <label>Tipo</label>
 			  <select name="file_type" class="form-control input-sm">
