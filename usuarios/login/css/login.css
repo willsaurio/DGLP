@@ -1,134 +1,164 @@
+/* reset global*/
 * {
 	padding: 0;
 	margin: 0;
-	font-family: century gothic;
+	box-sizing: border-box;
+	font-family: "monserrat gothic", sans-serif;
 	text-align: center;
 }
 
+/*estilo del body*/
+body {
+	background-image: url('/DGLP/css/icons/DGLP2.png');
+	background-size: cover;
+	background-position: center;
+	width: 100%;
+	height: 100vh;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+/* Estelio del formulario */
 form {
 	padding: 50px 20px;
 	max-width: 500px;
-	background-color: #381b1ba6;
-	margin: auto;
-	margin-top: 70px;
-	padding-top: 28px;
-	margin-bottom: 30px
+	background-color: rgba(28, 27, 27, 0.8);
+	margin: 30px auto;
+	border-radius: 10px;
+	box-shadow: 0 4px 8px rgba(0, 0, 0,0.2);
 }
 
+/* Titulo del Formalurio */
 h1 {
-	text-align: center;
-	padding: 12px;
-	color: rgb(206, 203, 203)
+	color: rgb(206,203,203);
+	margin-bottom: 20px;
+	font-size: 2em;
 }
 
+/* Estilo de inputs */
 input {
-	width: calc(300px - 20px);
-	padding: 9px;
-	margin: auto;
-	margin-top: 12px;
-	font-size: 16px
+	width: 100%;
+	padding: 10px;
+	margin: 15px 0;
+	font-size: 16px;
+	border: 1px solid #ccc;
+	border-radius: 5px;
 }
 
-input[type='submit']{
+/* Estilo del botón de submit */
+input[type='submit'] {
 	background-color: #48e;
 	color: #fff;
-	width: 300px;
-	margin: 0 10%;
-	margin-top: 22px;
+	width: 100%;
+	padding: 10px;
 	border: none;
+	border-radius: 5px;
 	cursor: pointer;
+	transition: background-color 0.3s ease;
 }
 
-input[type="submit"]:hover {
-	background-color:#4492C8;
+input[type="submit"]:hover{
+	background-color: #4492C8;
+}
+
+/* Mensajes de Notificacion */
+.ok, .bad, .off {
+	text-align: center;
+	width: 100%;
+	padding: 12px;
+	color: #fff;
+	margin-bottom: 20px;
+	border-radius: 5px;
 }
 
 .ok {
-	text-align: center;
-	width: 100%;
-	padding: 12px;
 	background-color: #1e6;
-	color: #fff
 }
+
 .bad {
-	text-align: center;
-	width: 100%;
-	padding: 12px;
 	background-color: #a22;
-	color: #fff
 }
-.off{
-	text-align: center;
-	width: 100%;
-	padding: 12px;
+
+.off {
 	background-color: rgb(0, 0, 0);
-	color: #fff
-
 }
-body{
-	background-image:url(/DGLP/css/icons/DGLP2.png);
-	width: 100%;
-	height:100%vh;
-	background-size: cover;
 
-	color:white;
-	
-}
-.mensaje{
+/* Mensaje de error */
+.mensaje {
 	width: 100%;
 	max-width: 350px;
-	margin: auto;
-	margin-top: 20px;
+	margin: 20px auto;
 	text-align: left;
-	padding: 6px;
+	padding: 10px;
 	color: red;
+	background-color: rgba(255, 0, 0, 0.1);
+	border-radius: 5px;
+}
 
-}
+/* Subtítulos */
 h6 {
-	text-align: center;
-	padding: 12px;
-    color: rgb(206, 203, 203);
-    line-height: 20px;
+	color: rgb(206, 203, 203);
+	line-height: 20px;
+	margin-bottom: 10px;
 }
-.gabo{
-	padding: 50px 20px;
-	background-color: #381b1ba6;
-	margin: calc(25% + 100px);
-	margin-top: 70px;
-	padding-top: 28px;
-    margin-bottom: 30px;
+
+/* Contenedor adicional */
+.gabo {
+    padding: 50px 20px;
+    background-color: rgba(56, 27, 27, 0.8);
+    margin: auto;
+    border-radius: 10px;
     line-height: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
-header{
+
+/* Estilo del header */
+header {
     width: 100%;
     color: #fff;
     display: flex;
-    flex-wrap: wrap;
     align-items: center;
-    align-content: space-between;
-    background-color: rgba(0, 0, 0,.3);
+    justify-content: space-between;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.3);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
 }
-header h1{
-    margin-left: 5px;
-    align-items: center;
-    width: calc(20% - 100px);
-    font-family: montez;
+
+/* Título en el header */
+header h1 {
+    margin-left: 20px;
+    font-family: 'Montez', cursive;
     font-size: 55px;
 }
-header a{
+
+/* Links en el header */
+header a {
     margin-right: 30px;
     text-align: center;
     text-decoration: none;
     color: #fff;
-    font-size: 25px;
-    transition: all ease 300ms;
+    font-size: 18px;
+    transition: color 0.3s ease;
 }
-.login-box{
-	background-image:url(/DGLP/css/icons/DGLP2.png);
-	width: 350px;
-	height: 200px;
-	border-radius: 50%;
-	position: absolute;
-	top: -50px;
-	left: calc(50% - 50px);
+
+header a:hover {
+    color: #48e;
+}
+
+/* Caja de login (no visible en el código proporcionado) */
+.login-box {
+    background-image: url('/DGLP/css/icons/DGLP2.png');
+    width: 350px;
+    height: 200px;
+    border-radius: 50%;
+    position: absolute;
+    top: -50px;
+    left: 50%;
+    transform: translateX(-50%);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
